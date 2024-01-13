@@ -1,4 +1,49 @@
+/* body is focused nav and rest of -homepage ) */
+
 body{
     background: black;
-    color: white;
+    color: whitesmoke;
+    text-align: center;
+}
+
+.wrapper{
+    display: grid;
+    margin: 0 auto;
+    max-width: 1500px;
+    grid-template-columns: repeat(5,1fr);
+    grid-auto-rows: minmax(35rem, auto);
+    grid-gap: 35px;
+}
+
+.grid1{
+    color: wheat;
+      border: 1px solid whitesmoke;
+border-radius: 10px;
+grid-column: 5/5;
+grid-row: 2/4;
+
+}
+.grid2{
+    color: turquoise;
+    border-radius: 10px;
+    border: 1px solid whitesmoke;
+grid-column: 2/5;
+}
+.grid3{
+    color: maroon;
+    border-radius: 10px;
+    border: 1px solid whitesmoke;
+    grid-column: 1/5;
+}
+.grid4{
+    color: yellowgreen;
+    border-radius: 10px;
+    border: 1px solid whitesmoke;
+grid-column: 1 / 4;
+}
+.grid5{
+    color: limegreen;
+    border-radius: 10px;
+    border: 1px solid whitesmoke;
+    grid-column: 1/6;
 }

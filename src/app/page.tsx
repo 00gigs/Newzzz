@@ -11,12 +11,15 @@ import Trending from './components/trending/page'
 const Home = () => {
   return (
     <div>
-      <Nav />
-      <div className="grid"><Community /></div>
-      <div className="grid"><Missed /></div>
-      <div className="grid"> <New /></div>
-      <div className="grid"><Recommended /></div>
-      <div className="grid"><Trending /></div>
+       <Nav />
+      <div className='wrapper'>
+        <div className="grid3"> <New /></div>
+        <div className="grid1"><Community /></div>
+        <div className="grid2"><Missed /></div>
+        <div className="grid4"><Recommended /></div>
+        <div className="grid5"><Trending /></div>
+      </div>
+
     </div>
   )
 }
