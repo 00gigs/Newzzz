@@ -1,32 +1,40 @@
+import { Card, Paper } from '@mui/material';
+import Link from '@mui/material/Link';
 import React from "react"
-import { useState,useEffect } from "react"
+import { useState, useEffect } from "react"
+import Typography from '@mui/material/Typography'
+import CardContent from '@mui/material/CardContent';
 
+import {ThemeProvider, createTheme}  from '@mui/system';
 
 const New = () => {
-const [data, setData] = useState(null)
+  const [data, setData] = useState(null)
 
-useEffect(() => {
-fetch('https://api.nytimes.com/svc/news/v3/content/nyt/business.json?limit=1&api-key=5YzZRcQGwKUHN0MDug914JIYNjpJt5l8')
-.then(res => res.json())
-.then(data =>setData(data))
-}, [])
+  useEffect(() => {
+    fetch('https://api.nytimes.com/svc/news/v3/content/nyt/all.json?limit=10&api-key=5YzZRcQGwKUHN0MDug914JIYNjpJt5l8')
+      .then(res => res.json())
+      .then(data => setData(data))
+  }, [])
 
-if(!data) return <div>...Loading</div>
+  if (!data) return <div>...Loading</div>
 
-const title = data.results[0].title;
-const section = data.results[0].section;
-const url = data.results[0].url;
-const abstract = data.results[0].abstract
-
-
-return (
-  <div>
-    <h1>{title}</h1>
-    <p>From the {section} Feed</p>
-    <p>Overview : {abstract}</p>
-    <a href={url} target="_blank" rel="noopener noreferrer">Read Article</a>
-  </div>
-);
+  return (
+    <div>
+      <h1>NEW</h1>
+      {data.results.map((story, index) => (
+        <Link key={index} href={story.url} underline="none">
+          <Card variant="outlined" sx={{m:1,bgcolor:'#bdbdbd'}}>
+            <CardContent>
+              <Typography variant="overline" display="block" gutterBottom>{story.section}</Typography>
+              <Typography variant="h4" gutterBottom>{story.title}</Typography>
+              <Typography variant="subtitle2" gutterBottom>Overview: {story.abstract}</Typography>
+            {story.multimedia && story.multimedia[0] && <img src={story.multimedia[0].url} alt={story.title} />}
+            </CardContent>
+          </Card>
+        </Link>
+      ))}
+    </div>
+  );
 }
 
 export default New

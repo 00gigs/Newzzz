@@ -10,6 +10,7 @@ import Trending from './components/trending/page'
 
 const Home = () => {
   return (
+
     <div>
       <div className='nav'>
         <Nav />

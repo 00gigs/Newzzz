@@ -1,5 +1,6 @@
 /* body is focused nav and rest of -homepage ) */
 
+
 body{
     background: black;
     color: whitesmoke;
@@ -40,6 +41,8 @@ grid-column: 2/5;
     border-radius: 10px;
     border: 1px solid whitesmoke;
     grid-column: 1/5;
+    overflow-y: scroll; /* Enable vertical scrolling */
+max-height: 35rem;
 }
 .grid4{
     color: yellowgreen;
