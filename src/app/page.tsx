@@ -8,13 +8,17 @@ import Recommended from './components/recommended/page'
 import Trending from './components/trending/page'
 
 
+ 
+
+
+    
+ 
+
+
 const Home = () => {
   return (
-
     <div>
-      <div className='nav'>
         <Nav />
-      </div>
       <div className='wrapper'>
         <div className="grid3"> <New /></div>
         <div className="grid1"><Community /></div>
@@ -22,7 +26,7 @@ const Home = () => {
         <div className="grid4"><Recommended /></div>
         <div className="grid5"><Trending /></div>
       </div>
-
+ ©  2024 James Harrington Co.All rights reserved.
     </div>
   )
 }

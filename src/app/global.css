@@ -2,16 +2,11 @@
 
 
 body{
-    background: black;
+background:#727373;
     color: whitesmoke;
     text-align: center;
 }
 
-.nav{
-width: fit-content;
-  border: 1px solid snow;
-  text-align: center;
-}
 
 .wrapper{
     display: grid;
@@ -23,36 +18,49 @@ width: fit-content;
 }
 
 .grid1{
+    
     color: wheat;
       border: 1px solid whitesmoke;
 border-radius: 10px;
 grid-column: 5/5;
 grid-row: 2/4;
+background: rgba(0, 0, 0, 0.813);
 
 }
 .grid2{
-    color: turquoise;
+    color: snow;
     border-radius: 10px;
     border: 1px solid whitesmoke;
 grid-column: 2/5;
+background: rgba(0, 0, 0, 0.813);
+overflow-y: scroll; /* Enable vertical scrolling */
+max-height: 35rem;
 }
 .grid3{
-    color: maroon;
+    color: snow;
     border-radius: 10px;
     border: 1px solid whitesmoke;
     grid-column: 1/5;
     overflow-y: scroll; /* Enable vertical scrolling */
 max-height: 35rem;
+background: rgba(0, 0, 0, 0.813);
+
 }
 .grid4{
-    color: yellowgreen;
+    color: snow;
     border-radius: 10px;
     border: 1px solid whitesmoke;
 grid-column: 1 / 4;
+background: rgba(0, 0, 0, 0.813);
+overflow-y: scroll; /* Enable vertical scrolling */
+max-height: 35rem;
 }
 .grid5{
-    color: limegreen;
+    color: snow;
     border-radius: 10px;
     border: 1px solid whitesmoke;
     grid-column: 1/6;
+    background: rgba(0, 0, 0, 0.813);
+    overflow-y: scroll; /* Enable vertical scrolling */
+    max-height: 35rem;
 }

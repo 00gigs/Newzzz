@@ -4,8 +4,8 @@ import React from "react"
 import { useState, useEffect } from "react"
 import Typography from '@mui/material/Typography'
 import CardContent from '@mui/material/CardContent';
+import styles from './styles.module.css'
 
-import {ThemeProvider, createTheme}  from '@mui/system';
 
 const New = () => {
   const [data, setData] = useState(null)
@@ -20,15 +20,15 @@ const New = () => {
 
   return (
     <div>
-      <h1>NEW</h1>
+      <h1 style={{textDecoration:'underline'}}>NEW</h1>
       {data.results.map((story, index) => (
         <Link key={index} href={story.url} underline="none">
           <Card variant="outlined" sx={{m:1,bgcolor:'#bdbdbd'}}>
             <CardContent>
+            {story.multimedia && story.multimedia[0] && <img className={styles.image} src={story.multimedia[0].url} alt={story.title} />}
               <Typography variant="overline" display="block" gutterBottom>{story.section}</Typography>
               <Typography variant="h4" gutterBottom>{story.title}</Typography>
               <Typography variant="subtitle2" gutterBottom>Overview: {story.abstract}</Typography>
-            {story.multimedia && story.multimedia[0] && <img src={story.multimedia[0].url} alt={story.title} />}
             </CardContent>
           </Card>
         </Link>
