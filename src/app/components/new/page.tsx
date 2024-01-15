@@ -33,7 +33,7 @@ const New = () => {
               <Typography variant="subtitle2" gutterBottom>Overview: {story.description}</Typography>
             </CardContent>
         </Link>
-            <button style={{display:'flex',background:'white',borderRadius:'10px'}}>
+            <button style={{display:'flex',background:'inherit',borderRadius:'10px'}}>
             <img style={{display:'flex'}} width="50" height="50" src="https://img.icons8.com/ios-filled/50/000000/bookmark-ribbon.png" alt="bookmark-ribbon"/>
             </button>
           </Card>

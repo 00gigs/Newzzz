@@ -6,6 +6,8 @@ import { styled, alpha } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import InputBase from '@mui/material/InputBase';
+import Link from 'next/link';
+
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -57,9 +59,14 @@ export default function ButtonAppBar() {
       <AppBar position="absolute" sx={{bgcolor:'brown'}}>
         <Toolbar>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+            <Link href='/' style={{color:'whitesmoke', textDecoration:'none'}}>
             ⚡️ Flash Feed.COM
+            </Link>
           </Typography>
-          <Button color="inherit"><img width="24" height="24" src="https://img.icons8.com/material-rounded/24/user.png" alt="user"/></Button>
+          <Link href='/UserDash' passHref>
+          <Button  color="inherit"><img width="24" height="24" src="https://img.icons8.com/material-rounded/24/user.png" alt="user"/></Button>
+          </Link>
+          
           <Search>
             <SearchIconWrapper>
               
