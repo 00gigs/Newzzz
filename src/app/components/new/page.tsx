@@ -7,11 +7,13 @@ import CardContent from '@mui/material/CardContent';
 import styles from './styles.module.css'
 
 
+
+
 const New = () => {
   const [data, setData] = useState(null)
 
   useEffect(() => {
-    fetch('https://api.nytimes.com/svc/news/v3/content/nyt/all.json?limit=10&api-key=5YzZRcQGwKUHN0MDug914JIYNjpJt5l8')
+    fetch('https://newsapi.org/v2/top-headlines?country=us&sortBy=publishedAt&apiKey=a85bc3b68a3f4351982c8f77634ce462')
       .then(res => res.json())
       .then(data => setData(data))
   }, [])
@@ -20,18 +22,21 @@ const New = () => {
 
   return (
     <div>
-      <h1 style={{textDecoration:'underline'}}>NEW</h1>
-      {data.results.map((story, index) => (
-        <Link key={index} href={story.url} underline="none">
-          <Card variant="outlined" sx={{m:1,bgcolor:'#bdbdbd'}}>
+      <h1 style={{ textDecoration: 'underline' }}>NEW</h1>
+      {data.articles.map((story, index) => (
+        <Card variant="outlined" sx={{ m: 1, bgcolor: '#bdbdbd' }}>
+            <Link key={index} href={story.url} underline="none" color='black'>
             <CardContent>
-            {story.multimedia && story.multimedia[0] && <img className={styles.image} src={story.multimedia[0].url} alt={story.title} />}
-              <Typography variant="overline" display="block" gutterBottom>{story.section}</Typography>
+              <img className={styles.image} src={story.urlToImage} alt={story.title} />
+              <Typography variant="overline" display="block" gutterBottom>{story.publishedAt}</Typography>
               <Typography variant="h4" gutterBottom>{story.title}</Typography>
-              <Typography variant="subtitle2" gutterBottom>Overview: {story.abstract}</Typography>
+              <Typography variant="subtitle2" gutterBottom>Overview: {story.description}</Typography>
             </CardContent>
-          </Card>
         </Link>
+            <button style={{display:'flex',background:'white',borderRadius:'10px'}}>
+            <img style={{display:'flex'}} width="50" height="50" src="https://img.icons8.com/ios-filled/50/000000/bookmark-ribbon.png" alt="bookmark-ribbon"/>
+            </button>
+          </Card>
       ))}
     </div>
   );

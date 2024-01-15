@@ -11,7 +11,7 @@ const New = () => {
   const [data, setData] = useState(null)
 
   useEffect(() => {
-    fetch('https://api.nytimes.com/svc/news/v3/content/nyt/business.json?limit=10&api-key=5YzZRcQGwKUHN0MDug914JIYNjpJt5l8')
+    fetch('https://newsapi.org/v2/everything?q=bitcoin&sortBy=relevancy&searchIn=content,title&language=en&apiKey=a85bc3b68a3f4351982c8f77634ce462')
       .then(res => res.json())
       .then(data => setData(data))
   }, [])
@@ -21,17 +21,22 @@ const New = () => {
   return (
     <div>
       <h1 style={{textDecoration:'underline'}}>RECOMMENDED</h1>
-      {data.results.map((story, index) => (
-        <Link key={index} href={story.url} underline="none">
+      {data.articles.map((story, index) => (
+        
           <Card variant="outlined" sx={{m:1,bgcolor:'#bdbdbd'}}>
+            <Link key={index} href={story.url} underline="none" color='black'>
             <CardContent>
-            {story.multimedia && story.multimedia[0] && <img className={styles.image} src={story.multimedia[0].url} alt={story.title} />}
-              <Typography variant="overline" display="block" gutterBottom>{story.section}</Typography>
+            <img className={styles.image} src={story.urlToImage} alt={story.title} />
+              <Typography variant="overline" display="block" gutterBottom>{story.publishedAt}</Typography>
               <Typography variant="h4" gutterBottom>{story.title}</Typography>
-              <Typography variant="subtitle2" gutterBottom>Overview: {story.abstract}</Typography>
+              <Typography variant="subtitle2" gutterBottom>Overview: {story.description}</Typography>
             </CardContent>
+            </Link>
+            <button style={{display:'flex'}}>
+            <img  width="50" height="50" src="https://img.icons8.com/ios-filled/50/000000/bookmark-ribbon.png" alt="bookmark-ribbon"/>
+            </button>
           </Card>
-        </Link>
+        
       ))}
     </div>
   );

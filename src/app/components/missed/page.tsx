@@ -1,4 +1,9 @@
-import { Card, Paper } from '@mui/material';
+//use date paramater to show only artilces posted 2 days or a day ago (current date - 24/48 hours )
+
+
+
+
+import { Card } from '@mui/material';
 import Link from '@mui/material/Link';
 import React from "react"
 import { useState, useEffect } from "react"
@@ -9,9 +14,18 @@ import styles from './styles.module.css'
 
 const New = () => {
   const [data, setData] = useState(null)
+// Get today's date
+let today = new Date();
+// Subtract 3 days from the date
+today.setDate(today.getDate() - 5);
+// Convert the date to YYYY-MM-DD format
+let formattedDate = today.toISOString().slice(0, 10);
+
+
+
 
   useEffect(() => {
-    fetch('https://api.nytimes.com/svc/mostpopular/v2/viewed/1.json?api-key=5YzZRcQGwKUHN0MDug914JIYNjpJt5l8')
+    fetch(`https://newsapi.org/v2/everything?q=news&from=${formattedDate}&language=en&apiKey=a85bc3b68a3f4351982c8f77634ce462`)
       .then(res => res.json())
       .then(data => setData(data))
   }, [])
@@ -21,17 +35,22 @@ const New = () => {
   return (
     <div>
       <h1 style={{textDecoration:'underline'}}>MISSED</h1>
-      {data.results.map((story, index) => (
-        <Link key={index} href={story.url} underline="none">
+      {data.articles.map((story, index) => (
+        
           <Card variant="outlined" sx={{m:1,bgcolor:'#bdbdbd'}}>
+            <Link key={index} href={story.url} underline="none" color='black'>
             <CardContent>
-            {story.multimedia && story.multimedia[0] && <img className={styles.image} src={story.multimedia[0].url} alt={story.title} />}
-              <Typography variant="overline" display="block" gutterBottom>{story.section}</Typography>
+            <img className={styles.image} src={story.urlToImage} alt={story.title} />
+              <Typography variant="overline" display="block" gutterBottom>{story.publishedAt}</Typography>
               <Typography variant="h4" gutterBottom>{story.title}</Typography>
-              <Typography variant="subtitle2" gutterBottom>Overview: {story.abstract}</Typography>
+              <Typography variant="subtitle2" gutterBottom>Overview: {story.description}</Typography>
             </CardContent>
+            </Link>
+            <button style={{display:'flex'}}>
+            <img  width="50" height="50" src="https://img.icons8.com/ios-filled/50/000000/bookmark-ribbon.png" alt="bookmark-ribbon"/>
+            </button>
           </Card>
-        </Link>
+        
       ))}
     </div>
   );
