@@ -34,7 +34,7 @@ const New = () => {
               <Typography variant="subtitle2" gutterBottom>Overview: {story.description}</Typography>
             </CardContent>
         </Link>
-           <SaveButtonURL/>
+           <SaveButtonURL url={story.url} />
           </Card>
       ))}
     </div>
