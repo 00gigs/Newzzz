@@ -1,7 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getDatabase } from "firebase/database";
-
+import { getAuth } from "firebase/auth";
 
 const ConfigurationDB = () =>{
     const firebaseConfig = {
@@ -16,8 +16,13 @@ const ConfigurationDB = () =>{
       
       // Initialize Firebase
       const app = initializeApp(firebaseConfig);
-      return getDatabase(app)
-}
+        // Initialize authentication
+    }
+
+    export const auth = getAuth(app)
+
+    // Initialize real time database
+    export const db =  getDatabase(app)
 
 export default ConfigurationDB
 

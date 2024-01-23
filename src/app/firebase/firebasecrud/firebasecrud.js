@@ -11,7 +11,7 @@ export const saveUrlToFirebase = async (url) => {
     const newRef = push(urlRef)
     await set(newRef,{url})
     alert(url+' '+'added')
-    return newReference.key;
+    return newRef.key;
   } catch (error) {
     console.error('Error saving URL to Firebase:', error);
     alert('error' + error)
