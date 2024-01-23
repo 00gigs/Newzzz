@@ -3,7 +3,7 @@ import { initializeApp } from "firebase/app";
 import { getDatabase } from "firebase/database";
 import { getAuth } from "firebase/auth";
 
-const ConfigurationDB = () =>{
+
     const firebaseConfig = {
         apiKey: "AIzaSyB5dqniGqJ46tafGeoHmpAkUD1XtRSH1mQ",
         authDomain: "newz-50ae6.firebaseapp.com",
@@ -17,12 +17,12 @@ const ConfigurationDB = () =>{
       // Initialize Firebase
       const app = initializeApp(firebaseConfig);
         // Initialize authentication
-    }
+    
 
     export const auth = getAuth(app)
 
     // Initialize real time database
     export const db =  getDatabase(app)
 
-export default ConfigurationDB
+
 
