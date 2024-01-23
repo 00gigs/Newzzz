@@ -60,4 +60,6 @@ sortBy=relevancy,popularity,publishedAt
 Pagesize=10
 
 
+savebutton component
 
+https://chat.openai.com/share/89479e20-1d4e-4587-9090-caf2b451d049
