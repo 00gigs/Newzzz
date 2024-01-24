@@ -1,12 +1,14 @@
-import { login, signup} from '../../firebase/firebaseAuth/firebaseauth'
+'use client'
+
+import { login, signup} from '../firebase/firebaseAuth/firebaseauth'
 import React from 'react'
 import { useState } from 'react'
-const firebaseauthPage = () => {
+const FirebaseauthPage = () => {
 const [email, setEmail] = useState('')
 const [password, setPassword] = useState('')
 
 
-const handleSignup = async() =>{
+const HandleSignup = async() =>{
 try {
     let user = await signup(email,password)
    console.log('user created',user)
@@ -16,7 +18,7 @@ try {
 }
 
 
-const handleLogin = async ()=>{
+const HandleLogin = async ()=>{
     try{
 let user = await login(email,password)
 console.log('user created',user)
@@ -30,16 +32,17 @@ console.log('error logging in',error)
   return (
     <div>
 
-    
+    <form >
         <input value={email} type='email' onChange={e => setEmail(e.target.value)} placeholder='enter email'/>
         <input value={password} type='password' onChange={e =>setPassword(e.target.value)} placeholder='create a password'/>
-        <button onClick={handleSignup}>signUp</button>
-        <button onClick={handleLogin}>LogIn</button>
-     
+        <button type='button' onClick={HandleSignup}>signUp</button>
+        <button type='button' onClick={HandleLogin}>LogIn</button>
+    </form>
+       
         
     </div>
   )
 }
 
-export default firebaseauthPage
+export default FirebaseauthPage
 
