@@ -3,6 +3,8 @@
 import { login, signup} from '../firebase/firebaseAuth/firebaseauth'
 import React from 'react'
 import { useState } from 'react'
+
+
 const FirebaseauthPage = () => {
 const [email, setEmail] = useState('')
 const [password, setPassword] = useState('')
@@ -21,7 +23,7 @@ try {
 const HandleLogin = async ()=>{
     try{
 let user = await login(email,password)
-console.log('user created',user)
+console.log(user,'logged in ')
     }catch(error){
 console.log('error logging in',error)
     }
