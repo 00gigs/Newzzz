@@ -65,7 +65,7 @@ export default function ButtonAppBar() {
             ⚡️ Flash Feed.COM
             </Link>
           </Typography>
-          <Link href='/UserDash' passHref>
+          <Link href='/Register' passHref>
           <Button  color="inherit"><img width="24" height="24" src="https://img.icons8.com/material-rounded/24/user.png" alt="user"/></Button>
           </Link>
           

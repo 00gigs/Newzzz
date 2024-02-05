@@ -1,13 +1,14 @@
 'use client'
-
+import Button from '@mui/material/Button';
 import { login, signup} from '../firebase/firebaseAuth/firebaseauth'
 import React from 'react'
 import { useState } from 'react'
-
+import TextField from '@mui/material/TextField';
 
 const FirebaseauthPage = () => {
 const [email, setEmail] = useState('')
 const [password, setPassword] = useState('')
+const [name, setName] = useState('')
 
 
 const HandleSignup = async() =>{
@@ -28,17 +29,17 @@ console.log(user,'logged in ')
 console.log('error logging in',error)
     }
 }
-
-
-
   return (
     <div>
-
-    <form >
-        <input value={email} type='email' onChange={e => setEmail(e.target.value)} placeholder='enter email'/>
-        <input value={password} type='password' onChange={e =>setPassword(e.target.value)} placeholder='create a password'/>
-        <button type='button' onClick={HandleSignup}>signUp</button>
-        <button type='button' onClick={HandleLogin}>LogIn</button>
+    <form>
+    <TextField value={email} type='email' onChange={e => setEmail(e.target.value)} required id="outlined-basic" label="Email" variant="outlined" />
+    <TextField  value={password} type='password' onChange={e =>setPassword(e.target.value)} required id="outlined-password-input" label="Password"  autoComplete="current-password" />
+        {/* <input value={email} type='email' onChange={e => setEmail(e.target.value)} placeholder='enter email'/>
+        <input value={password} type='password' onChange={e =>setPassword(e.target.value)} placeholder='create a password'/> */}
+        {/* <button >signUp</button>
+        <button >LogIn</button> */}
+        <Button type='button' onClick={HandleSignup} variant="contained">signUp</Button>
+        <Button type='button' onClick={HandleLogin}>LogIn</Button>
     </form>
        
         
