@@ -5,11 +5,16 @@ import React from 'react'
 import { useState } from 'react'
 import TextField from '@mui/material/TextField';
 
+
 const FirebaseauthPage = () => {
 const [email, setEmail] = useState('')
 const [password, setPassword] = useState('')
-const [name, setName] = useState('')
 
+
+const clearForm = () => {
+    setEmail('');
+    setPassword('');
+};
 
 const HandleSignup = async() =>{
 try {
@@ -18,6 +23,7 @@ try {
 } catch (error) {
     console.log('failed to create user',error)
 }
+clearForm()
 }
 
 
@@ -28,10 +34,14 @@ console.log(user,'logged in ')
     }catch(error){
 console.log('error logging in',error)
     }
+    clearForm()
 }
   return (
+    
     <div>
-    <form>
+    <form
+
+    >
     <TextField value={email} type='email' onChange={e => setEmail(e.target.value)} required id="outlined-basic" label="Email" variant="outlined" />
     <TextField  value={password} type='password' onChange={e =>setPassword(e.target.value)} required id="outlined-password-input" label="Password"  autoComplete="current-password" />
         {/* <input value={email} type='email' onChange={e => setEmail(e.target.value)} placeholder='enter email'/>
