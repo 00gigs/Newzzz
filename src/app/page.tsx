@@ -6,6 +6,7 @@ import Missed from './components/missed/page'
 import New from './components/new/page'
 import Recommended from './components/recommended/page'
 import Trending from './components/trending/page'
+import MyComponent from './components/UserAuth/page'
 
 
  
@@ -25,6 +26,7 @@ const Home = () => {
         <div className="grid2"><Missed /></div>
         <div className="grid4"><Recommended /></div>
         <div className="grid5"><Trending /></div>
+        <MyComponent/>
       </div>
  ©  2024 James Harrington Co.All rights reserved.
     </div>

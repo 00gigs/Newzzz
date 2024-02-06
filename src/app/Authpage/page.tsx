@@ -30,7 +30,12 @@ clearForm()
 const HandleLogin = async ()=>{
     try{
 let user = await login(email,password)
-console.log(user,'logged in ')
+if(user){
+    console.log(user,'logged in ')
+    
+}else{
+    console.log('try again')
+}
     }catch(error){
 console.log('error logging in',error)
     }
