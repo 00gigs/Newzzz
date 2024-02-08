@@ -9,7 +9,12 @@ import Typography from '@mui/material/Typography';
 const UserDash = () => {
   return (
     <div>
-      your saved
+      your saved stories 
+      {/* use read firebase operation to display users stories*/}
+
+      {/* add inside of each of the saved mapped stories, 
+      a share button that lets you post a story to the community 
+      page and make comment */}
     </div>
   )
 }

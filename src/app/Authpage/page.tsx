@@ -1,14 +1,20 @@
 'use client'
 import Button from '@mui/material/Button';
 import { login, signup} from '../firebase/firebaseAuth/firebaseauth'
+import { getAuth,onAuthStateChanged } from 'firebase/auth';
 import React from 'react'
 import { useState } from 'react'
 import TextField from '@mui/material/TextField';
 
 
+// SHOULD ONLY BE ALLOWED TO LOG IN IF REGISTERED(signed up)
+
 const FirebaseauthPage = () => {
 const [email, setEmail] = useState('')
 const [password, setPassword] = useState('')
+
+
+
 
 
 const clearForm = () => {
@@ -28,6 +34,7 @@ clearForm()
 
 
 const HandleLogin = async ()=>{
+    
     try{
 let user = await login(email,password)
 if(user){

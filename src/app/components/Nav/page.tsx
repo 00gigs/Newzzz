@@ -1,5 +1,4 @@
 'use client'
-
 import * as React from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -9,7 +8,8 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import InputBase from '@mui/material/InputBase';
 import Link from 'next/link';
-
+import { useEffect, useState } from 'react';
+import { getAuth, onAuthStateChanged, signOut, } from 'firebase/auth';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -56,6 +56,29 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 
 export default function ButtonAppBar() {
+
+  const [user,setUser] = useState(null)
+
+
+  useEffect(() => {
+    const auth = getAuth()
+  const unsubscirbe  = onAuthStateChanged(auth,(currentUser)=>{
+    setUser(currentUser)
+  })
+  return () => unsubscirbe()
+  }, [])
+
+const handleSignout = ()=>{
+  const auth = getAuth()
+  signOut(auth).then(()=>{
+    console.log('User signed out');
+  }).catch(()=>{
+    console.error('Error signing out: ', error);
+  })
+}
+
+
+
   return (
     <Box sx={{ flexGrow: 1, mb:10 }}>
       <AppBar position="absolute" sx={{bgcolor:'brown'}}>
@@ -65,6 +88,16 @@ export default function ButtonAppBar() {
             ⚡️ Flash Feed.COM
             </Link>
           </Typography>
+
+          {user && (
+            <React.Fragment>
+              <Typography variant="subtitle1" sx={{ mr: 2 }}>
+                {user.email || 'User'}
+              </Typography>
+              <Button color="inherit" onClick={handleSignout}>Sign Out</Button>
+            </React.Fragment>
+          )}
+
           <Link href='/Register' passHref>
           <Button  color="inherit"><img width="24" height="24" src="https://img.icons8.com/material-rounded/24/user.png" alt="user"/></Button>
           </Link>
