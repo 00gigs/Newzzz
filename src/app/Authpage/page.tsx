@@ -3,7 +3,7 @@ import Button from '@mui/material/Button';
 import { login, signup} from '../firebase/firebaseAuth/firebaseauth'
 import { getAuth,onAuthStateChanged } from 'firebase/auth';
 import React from 'react'
-import { useState } from 'react'
+import { useState,useEffect} from 'react'
 import TextField from '@mui/material/TextField';
 
 
@@ -12,8 +12,16 @@ import TextField from '@mui/material/TextField';
 const FirebaseauthPage = () => {
 const [email, setEmail] = useState('')
 const [password, setPassword] = useState('')
+const [user, setUser] = useState(null)
 
 
+useEffect(() => {
+    const auth = getAuth()
+  const unsubscirbe  = onAuthStateChanged(auth,(currentUser)=>{
+    setUser(currentUser)
+  })
+  return () => unsubscirbe()
+  }, [])
 
 
 
@@ -22,30 +30,42 @@ const clearForm = () => {
     setPassword('');
 };
 
-const HandleSignup = async() =>{
-try {
-    let user = await signup(email,password)
-   console.log('user created',user)
-} catch (error) {
-    console.log('failed to create user',error)
-}
-clearForm()
-}
+const HandleSignup = async () => {
+    try {
+        // Attempt to sign up with the provided email and password.
+        // Firebase Auth will automatically reject the signup if the user already exists.
+        let userCredential = await signup(email, password);
+        console.log('User created', userCredential);
+    } catch (error) {
+        if (error.code === 'auth/email-already-in-use') {
+            console.log('Email already in use. Please log in or use a different email.');
+        } else {
+            console.log(error);
+        }
+    }
+    clearForm();
+};
+
 
 
 const HandleLogin = async ()=>{
-    
-    try{
-let user = await login(email,password)
-if(user){
-    console.log(user,'logged in ')
-    
-}else{
-    console.log('try again')
-}
-    }catch(error){
-console.log('error logging in',error)
+    const auth = getAuth()
+    if(auth){
+        try{
+            let user = await login(email,password)
+            if(user){
+                console.log(user,'logged in ')
+                
+            }else{
+                console.log('try again')
+            }
+                }catch(error){
+            console.log('error logging in',error)
+                }
+    }else{
+        console.log('you need to sign up first')
     }
+ 
     clearForm()
 }
   return (
