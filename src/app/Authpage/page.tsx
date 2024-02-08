@@ -7,7 +7,7 @@ import { useState,useEffect} from 'react'
 import TextField from '@mui/material/TextField';
 
 
-// SHOULD ONLY BE ALLOWED TO LOG IN IF REGISTERED(signed up)
+
 
 const FirebaseauthPage = () => {
 const [email, setEmail] = useState('')
@@ -32,11 +32,12 @@ const clearForm = () => {
 
 const HandleSignup = async () => {
     try {
-        // Attempt to sign up with the provided email and password.
+        
         // Firebase Auth will automatically reject the signup if the user already exists.
         let userCredential = await signup(email, password);
         console.log('User created', userCredential);
     } catch (error) {
+        //👇🏻doesn't alert user on screen email adress is already in use please log in
         if (error.code === 'auth/email-already-in-use') {
             console.log('Email already in use. Please log in or use a different email.');
         } else {

@@ -1,4 +1,3 @@
-import ConfigurationDB from "../firebaseconfig/firebaseconfig";
 import { useState } from "react";
 import {ref,set,get,update,remove,child, push} from "firebase/database"
 import { db } from "../firebaseconfig/firebaseconfig";
@@ -26,6 +25,23 @@ export const saveUrlToFirebase = async (url) => {
   }
 };
 
+export const ShareToCommunity = async (article) =>{
+  try {
+    const auth = getAuth()
+    const user =  auth.currentUser
+    if(!user){
+      throw new Error('no user authenticated')
+    }
+    const userID = user.uid
+    set(ref(db,`SharedPost/${userID}/Userpost`)){
+      article.url
+    }
+
+
+  } catch (error) {
+    
+  }
+}
 
 
  
