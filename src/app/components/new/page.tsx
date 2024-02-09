@@ -7,6 +7,7 @@ import CardContent from '@mui/material/CardContent';
 import styles from './styles.module.css'
 
 import SaveStory from '../SaveStory/SaveStory';
+import { ReadStory } from '@/app/firebase/firebasecrud/firebasecrud';
 
 
 
@@ -37,6 +38,7 @@ const New = () => {
 
         {/* change SaveButtonURL to a read function that reads SaveStory data to be able to allow users to share their saved stories,,inside community component  */}
            <SaveStory url={story.url} title={story.title} urlToImage={story.urlToImage} description={story.description}/>
+           <ReadStory />
           </Card>
       ))}
     </div>

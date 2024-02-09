@@ -1,4 +1,3 @@
-
 import {
   ref,
   set,
@@ -10,7 +9,7 @@ import {
   onValue,
 } from "firebase/database";
 import { db } from "../firebaseconfig/firebaseconfig";
-import { getAuth } from "firebase/auth";
+import { getAuth, User } from "firebase/auth";
 
 
 export const saveUrlToFirebase = async (url) => {
@@ -49,7 +48,7 @@ export const ShareToCommunity = async ({ story }) => {
   } catch {}
 };
 
-export const readStory = async () => {
+export const ReadStory =  () => {
   try {
     const auth = getAuth();
     const user = auth.currentUser;
@@ -57,9 +56,9 @@ export const readStory = async () => {
     userID = user.uid;
 
     const storyObjRef = ref(db, `SavedStories/${userID}/UserStory->`);
-    onValue(storyObjRef, (snapshot) => {
+     onValue(storyObjRef, (snapshot) => {
       const RawData = snapshot.val();
-console.log(RawData)
+alert(RawData)
 
     });
   } catch (error) {
