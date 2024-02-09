@@ -23,6 +23,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/new", "src/app/firebase/firebaseconfig/firebaseconfig.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/new", "src/app/firebase/firebaseconfig/firebaseconfig.tsx", "src/app/firebase/firebasecrud/firebasecrud.js"],
   "exclude": ["node_modules"]
 }

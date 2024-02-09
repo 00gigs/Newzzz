@@ -4,6 +4,8 @@ import { db } from "../firebaseconfig/firebaseconfig";
 import { getAuth } from 'firebase/auth';
 
 
+
+
 export const saveUrlToFirebase = async (url) => {
   try {
     const auth = getAuth()
@@ -25,7 +27,8 @@ export const saveUrlToFirebase = async (url) => {
   }
 };
 
-export const ShareToCommunity = async () =>{
+export const ShareToCommunity = async ({story}) =>{
+
   try {
     const auth = getAuth()
     const user =  auth.currentUser
@@ -33,15 +36,16 @@ export const ShareToCommunity = async () =>{
       throw new Error('no user authenticated')
     }
     const userID = user.uid
-    set(ref(db,`SharedPost/${userID}/Userpost`)),{
-      article:article
-    }
 
-
-  } catch (error) {
+    const urlRef = ref(db,(`SharedPost/${userID}/Userpost`))
+    const newRef = push(urlRef)
+    await set(newRef,story)
+  }catch{
     
   }
+
 }
+  
 
 
  
