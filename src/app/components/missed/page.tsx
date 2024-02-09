@@ -6,9 +6,7 @@ import { useState, useEffect } from "react"
 import Typography from '@mui/material/Typography'
 import CardContent from '@mui/material/CardContent';
 import styles from './styles.module.css'
-import SaveButtonURL from '../SavebuttonURL/saveButtonURL';
-
-import firebase from 'firebase/compat/app';
+import SaveStory from '../SaveStory/SaveStory';
 
 const New = () => {
   const [data, setData] = useState(null)
@@ -44,7 +42,7 @@ const Key='a85bc3b68a3f4351982c8f77634ce462'
               <Typography variant="subtitle2" gutterBottom>Overview: {story.description}</Typography>
             </CardContent>
             </Link>
-            <SaveButtonURL  url={story.url} />
+            <SaveStory url={story.url} title={story.title} urlToImage={story.urlToImage} description={story.description}/>
           </Card>
         
       ))}
