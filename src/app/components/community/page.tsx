@@ -6,7 +6,7 @@ const Community = () => {
   return (
     <div>
        community
-
+<h1></h1>
     </div>
   )
 }
