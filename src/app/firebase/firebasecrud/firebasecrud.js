@@ -25,7 +25,7 @@ export const saveUrlToFirebase = async (url) => {
   }
 };
 
-export const ShareToCommunity = async (article) =>{
+export const ShareToCommunity = async () =>{
   try {
     const auth = getAuth()
     const user =  auth.currentUser
@@ -33,8 +33,8 @@ export const ShareToCommunity = async (article) =>{
       throw new Error('no user authenticated')
     }
     const userID = user.uid
-    set(ref(db,`SharedPost/${userID}/Userpost`)){
-      article.url
+    set(ref(db,`SharedPost/${userID}/Userpost`)),{
+      article:article
     }
 
 
