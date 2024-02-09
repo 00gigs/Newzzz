@@ -6,7 +6,7 @@ import Typography from '@mui/material/Typography'
 import CardContent from '@mui/material/CardContent';
 import styles from './styles.module.css'
 import SaveButtonURL from '../SavebuttonURL/saveButtonURL';
-
+import SaveStory from '../SaveStory/SaveStory';
 
 
 
@@ -35,6 +35,7 @@ const New = () => {
             </CardContent>
         </Link>
            <SaveButtonURL url={story.url} />
+           <SaveStory url={story.url} title={story.title} urlToImage={story.urlToImage} description={story.description}/>
           </Card>
       ))}
     </div>

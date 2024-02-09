@@ -1,19 +1,19 @@
 
 'use client'
-
+import { ShareToCommunity } from '@/app/firebase/firebasecrud/firebasecrud'
 import {getAuth,onAuthStateChanged} from 'firebase/auth'
 import { useEffect,useState } from 'react'
 import React from 'react'
 
 
 interface Story{
-    url:string
-    title:string
-    urlToImage:string
-    description:string
+    url:string;
+    title:string;
+    urlToImage:string;
+    description:string;
 }
 
-const SaveStory:React.FC<Story> = ({story}) =>{
+const SaveStory:React.FC<Story> = (story:Story) =>{
     const [isUserAuthenticated, setIsUserAuthenticated] = useState(false)
 
 
@@ -33,9 +33,19 @@ const handleSave = async () =>{
         return;
     }
     try {
-        const key = 
+        const key = await ShareToCommunity({story})
+        console.log(`Story saved with key ${key}`)
     } catch (error) {
-        
+        console.log('failed saving Story', error)
     }
 }
+
+
+return (
+    <button  onClick={handleSave} style={{display:'flex'}}>
+    <img width="64" height="64" src="https://img.icons8.com/cotton/64/save.png" alt="save"/>
+    </button>
+  )
 }
+
+export default SaveStory

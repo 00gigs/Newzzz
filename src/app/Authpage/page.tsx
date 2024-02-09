@@ -48,7 +48,7 @@ const HandleSignup = async () => {
 };
 
 
-
+// WHEN LOGGED IN AUTOMATICALLY REDIRECT TO HOMEPAGE
 const HandleLogin = async ()=>{
     const auth = getAuth()
     if(auth){

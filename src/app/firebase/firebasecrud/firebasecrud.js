@@ -37,7 +37,7 @@ export const ShareToCommunity = async ({story}) =>{
     }
     const userID = user.uid
 
-    const urlRef = ref(db,(`SharedPost/${userID}/Userpost`))
+    const urlRef = ref(db,(`SavedStories/${userID}/UserStory->`))
     const newRef = push(urlRef)
     await set(newRef,story)
   }catch{
