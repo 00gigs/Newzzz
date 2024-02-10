@@ -1,6 +1,6 @@
 
 'use client'
-import { ShareToCommunity } from '@/app/firebase/firebasecrud/firebasecrud'
+import { SaveInfo } from '@/app/firebase/firebasecrud/firebasecrud'
 import {getAuth,onAuthStateChanged} from 'firebase/auth'
 import { useEffect,useState } from 'react'
 import React from 'react'
@@ -33,7 +33,7 @@ const handleSave = async () =>{
         return;
     }
     try {
-        const key = await ShareToCommunity({story})
+        const key = await SaveInfo({story})
         console.log(`Story saved with key ${key}`)
     } catch (error) {
         console.log('failed saving Story', error)

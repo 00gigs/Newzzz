@@ -5,9 +5,9 @@ import { useState, useEffect } from "react"
 import Typography from '@mui/material/Typography'
 import CardContent from '@mui/material/CardContent';
 import styles from './styles.module.css'
-
+import ShareButton from '../Share/Share';
 import SaveStory from '../SaveStory/SaveStory';
-import { ReadStory } from '@/app/firebase/firebasecrud/firebasecrud';
+// import { ReadStory } from '@/app/firebase/firebasecrud/firebasecrud';
 
 
 
@@ -35,10 +35,7 @@ const New = () => {
               <Typography variant="subtitle2" gutterBottom>Overview: {story.description}</Typography>
             </CardContent>
         </Link>
-
-        {/* change SaveButtonURL to a read function that reads SaveStory data to be able to allow users to share their saved stories,,inside community component  */}
            <SaveStory url={story.url} title={story.title} urlToImage={story.urlToImage} description={story.description}/>
-           <ReadStory />
           </Card>
       ))}
     </div>

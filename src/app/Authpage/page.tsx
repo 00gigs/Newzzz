@@ -77,10 +77,7 @@ const HandleLogin = async ()=>{
     >
     <TextField value={email} type='email' onChange={e => setEmail(e.target.value)} required id="outlined-basic" label="Email" variant="outlined" />
     <TextField  value={password} type='password' onChange={e =>setPassword(e.target.value)} required id="outlined-password-input" label="Password"  autoComplete="current-password" />
-        {/* <input value={email} type='email' onChange={e => setEmail(e.target.value)} placeholder='enter email'/>
-        <input value={password} type='password' onChange={e =>setPassword(e.target.value)} placeholder='create a password'/> */}
-        {/* <button >signUp</button>
-        <button >LogIn</button> */}
+
         <Button type='button' onClick={HandleSignup} variant="contained">signUp</Button>
         <Button type='button' onClick={HandleLogin}>LogIn</Button>
     </form>

@@ -1,7 +1,7 @@
 
 import { ReadStory } from "@/app/firebase/firebasecrud/firebasecrud";
 import { getAuth,onAuthStateChanged } from "firebase/auth";
-import { useEffect,useState } from "react";
+import React, { useEffect,useState } from "react";
 
 interface UserStory{
     url:string;
@@ -11,7 +11,7 @@ interface UserStory{
 }
 
 
-const ShareButton =  (story:UserStory) =>{
+const ShareButton:React.FC<UserStory> =  (story:UserStory) =>{
     const [isUserAuthenticated, setIsUserAuthenticated] = useState(false)
 
     useEffect(() => {
@@ -24,14 +24,20 @@ const ShareButton =  (story:UserStory) =>{
     return ()=> unsubscribe()
     }, [])
 
-    
-
-    try {
-        const snapshotData =  ReadStory()
-        console.log(snapshotData)
-    } catch (error) {
-        console.log('error',error)
+    const handleSave = async ()=>{
+        try {
+            const snapshotData =  await ReadStory()
+            console.log(snapshotData)
+        } catch (error) {
+            console.log('error',error)
+        }
+        
     }
+    return(
+        <button onClick={handleSave} style={{display:'flex'}}>
+            <img width="30" height="30" src="https://img.icons8.com/ios-glyphs/30/group-foreground-selected.png" alt="group-foreground-selected"/>
+        </button>
+    )
 }
 
 export default ShareButton
