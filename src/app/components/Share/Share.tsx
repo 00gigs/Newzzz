@@ -13,10 +13,9 @@ interface UserStory{
 
 const ShareButton:React.FC<UserStory> =  (story:UserStory) =>{
     const [isUserAuthenticated, setIsUserAuthenticated] = useState(false)
-
+    console.log('shareButton story input: ',story)
     useEffect(() => {
     const auth = getAuth()
-    
     const unsubscribe = onAuthStateChanged(auth,(user)=>{
       setIsUserAuthenticated(!!user)
       console.log('Authentication State Changed: ', !!user); // Debugging line
@@ -25,9 +24,10 @@ const ShareButton:React.FC<UserStory> =  (story:UserStory) =>{
     }, [])
 
     const handleSave = async ()=>{
+        console.log('!!!! In sharebutton handleSave !!!!')
         try {
-            const snapshotData =  await ReadStory()
-            console.log(snapshotData)
+            const snapshotData =  await ReadStory();
+            console.log('snapshotData: ',JSON.stringify(snapshotData))
         } catch (error) {
             console.log('error',error)
         }

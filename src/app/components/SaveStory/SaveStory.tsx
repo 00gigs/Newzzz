@@ -7,6 +7,7 @@ import React from 'react'
 
 
 interface Story{
+
     url:string;
     title:string;
     urlToImage:string;
@@ -33,7 +34,9 @@ const handleSave = async () =>{
         return;
     }
     try {
+        console.log('story object: ',JSON.stringify(story,null, 3));
         const key = await SaveInfo({story})
+        console.log("key object: ",JSON.stringify(key, null, 3))//here
         console.log(`Story saved with key ${key}`)
     } catch (error) {
         console.log('failed saving Story', error)

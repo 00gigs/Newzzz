@@ -22,10 +22,12 @@ export const SaveInfo = async ({ story }) => {
     }
     const userID = user.uid;
 
-    const urlRef = ref(db, `SavedStories/${userID}/UserStory->`);
+    const urlRef = ref(db,`SavedStories/${userID}/UserStories`);
     const newRef = push(urlRef);
     await set(newRef, story);
+    return newRef.key
   } catch {}
+   
 };
 
 /**
@@ -33,7 +35,7 @@ export const SaveInfo = async ({ story }) => {
  * @return {Promise<{url: string, title: string, urlToImage: string, description: string }>} The story object.
  */
 export const ReadStory = async () => {
-  const storyRef = ref(db, `SavedStories/${userID}/UserStory->`);
+  const storyRef = ref(db, `SavedStories/${userID}/UserStories`);
   try {
     const snapshot = await get(storyRef);
     if (snapshot.exists()) {

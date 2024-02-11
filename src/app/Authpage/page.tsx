@@ -58,7 +58,7 @@ const HandleLogin = async ()=>{
                 console.log(user,'logged in ')
                 
             }else{
-                console.log('try again')
+                alert('please create an account')
             }
                 }catch(error){
             console.log('error logging in',error)
@@ -67,7 +67,7 @@ const HandleLogin = async ()=>{
         console.log('you need to sign up first')
     }
  
-    clearForm()
+   
 }
   return (
     

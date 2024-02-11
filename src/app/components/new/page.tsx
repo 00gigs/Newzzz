@@ -17,7 +17,9 @@ const New = () => {
   useEffect(() => {
     fetch('https://newsapi.org/v2/top-headlines?country=us&sortBy=publishedAt&apiKey=a85bc3b68a3f4351982c8f77634ce462')
       .then(res => res.json())
-      .then(data => setData(data))
+      .then(data => {
+        console.log(JSON.stringify(data, null, 3))
+        setData(data)})
   }, [])
 
   if (!data) return <div>...Loading</div>
@@ -36,6 +38,7 @@ const New = () => {
             </CardContent>
         </Link>
            <SaveStory url={story.url} title={story.title} urlToImage={story.urlToImage} description={story.description}/>
+           <ShareButton url={story.url} title={story.title} urlToImage={story.urlToImage} description={story.description}/>
           </Card>
       ))}
     </div>
