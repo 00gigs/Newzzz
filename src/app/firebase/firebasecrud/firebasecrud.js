@@ -11,8 +11,6 @@ import {
 import { db } from "../firebaseconfig/firebaseconfig";
 import { getAuth, User } from "firebase/auth";
 
-
-
 export const SaveInfo = async ({ story }) => {
   try {
     const auth = getAuth();
@@ -22,12 +20,11 @@ export const SaveInfo = async ({ story }) => {
     }
     const userID = user.uid;
 
-    const urlRef = ref(db,`SavedStories/${userID}/UserStories`);
+    const urlRef = ref(db, `SavedStories/${userID}/UserStories`);
     const newRef = push(urlRef);
     await set(newRef, story);
-    return newRef.key
+    return newRef.key;
   } catch {}
-   
 };
 
 /**
@@ -35,18 +32,23 @@ export const SaveInfo = async ({ story }) => {
  * @return {Promise<{url: string, title: string, urlToImage: string, description: string }>} The story object.
  */
 export const ReadStory = async () => {
-  const storyRef = ref(db, `SavedStories/${userID}/UserStories`);
   try {
-    const snapshot = await get(storyRef);
-    if (snapshot.exists()) {
-      console.log('Story data:', snapshot.val());
-      return snapshot.val(); // Assuming the story is directly stored as an object
-    } else {
-      console.log('No story available');
-      return Promise.reject('No story available');
-    }
+    const auth = getAuth();
+    const user = auth.currentUser;
+    if (!user) throw new Error("User is not authenticated."); // Ensure user is not null
+
+    const storyRef = ref(db, `SavedStories/${user.uid}/UserStories`);
+
+    get(child(db, storyRef)).then((snapshot) => {
+      if (snapshot.exists()) {
+        console.log(snapshot.val());
+      } else {
+        console.log("No data available");
+      }
+    }).catch((error) => {
+      console.error(error);
+    });
   } catch (error) {
-    console.error('Error fetching story:', error);
-    return Promise.reject(error);
+    console.error(error);
   }
 };

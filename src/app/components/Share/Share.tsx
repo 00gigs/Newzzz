@@ -23,18 +23,19 @@ const ShareButton:React.FC<UserStory> =  (story:UserStory) =>{
     return ()=> unsubscribe()
     }, [])
 
-    const handleSave = async ()=>{
+    const sharefunc = async ()=>{
         console.log('!!!! In sharebutton handleSave !!!!')
         try {
-            const snapshotData =  await ReadStory();
+            const snapshotData =  await ReadStory({story});
             console.log('snapshotData: ',JSON.stringify(snapshotData))
+            
         } catch (error) {
             console.log('error',error)
         }
         
     }
     return(
-        <button onClick={handleSave} style={{display:'flex'}}>
+        <button onClick={sharefunc} style={{display:'flex'}}>
             <img width="30" height="30" src="https://img.icons8.com/ios-glyphs/30/group-foreground-selected.png" alt="group-foreground-selected"/>
         </button>
     )
