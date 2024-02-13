@@ -23,7 +23,8 @@ export const SaveInfo = async ({ story }) => {
     const urlRef = ref(db, `SavedStories/${userID}/UserStories`);
     const newRef = push(urlRef);
     await set(newRef, story);
-    return newRef.key;
+    const refKey = newRef.key
+    return refKey;
   } catch {}
 };
 
@@ -31,23 +32,32 @@ export const SaveInfo = async ({ story }) => {
  * Fetches a story from Firebase Realtime Database.
  * @return {Promise<{url: string, title: string, urlToImage: string, description: string }>} The story object.
  */
-export const ReadStory = async () => {
+export const ReadStory = async (key) => {
   try {
     const auth = getAuth();
     const user = auth.currentUser;
-    if (!user) throw new Error("User is not authenticated."); // Ensure user is not null
+    if (!user) {
+      throw new Error("User is not authenticated.");
+    } // Ensure user is not null
+    const userID = user.uid;
 
-    const storyRef = ref(db, `SavedStories/${user.uid}/UserStories`);
 
-    get(child(db, storyRef)).then((snapshot) => {
-      if (snapshot.exists()) {
-        console.log(snapshot.val());
-      } else {
-        console.log("No data available");
-      }
-    }).catch((error) => {
-      console.error(error);
-    });
+
+    
+    const storyRef = `SavedStories/${userID}/UserStories/${key}`
+
+    console.log(storyRef)
+     get(child(db, storyRef))
+      .then((snapshot) => {
+        if (snapshot.exists()) {
+          console.log(snapshot.val());
+        } else {
+          console.log("No data available");
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   } catch (error) {
     console.error(error);
   }
