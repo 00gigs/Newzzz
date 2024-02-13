@@ -23,8 +23,7 @@ export const SaveInfo = async ({ story }) => {
     const urlRef = ref(db, `SavedStories/${userID}/UserStories`);
     const newRef = push(urlRef);
     await set(newRef, story);
-    const refKey = newRef.key
-    return refKey;
+    return  newRef.key;
   } catch {}
 };
 
@@ -46,8 +45,8 @@ export const ReadStory = async (key) => {
     
     const storyRef = `SavedStories/${userID}/UserStories/${key}`
 
-    console.log(storyRef)
-     get(child(db, storyRef))
+    console.log('StoryEndpointReference',JSON.stringify(storyRef,null,3))
+     get(child(db, 'UserStories'))
       .then((snapshot) => {
         if (snapshot.exists()) {
           console.log(snapshot.val());

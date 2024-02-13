@@ -30,13 +30,13 @@ useEffect(() => {
 const handleSave = async () =>{
     console.log('Attempting to save story. Authenticated:', isUserAuthenticated )
     if(!isUserAuthenticated){
-        alert('You must be logged in to save URLs.');
+        alert('YYou must be logged in to use the Save Feature .');
         return;
     }
     try {
         console.log('story object: ',JSON.stringify(story,null, 3));
         const key = await SaveInfo({story})
-        await ReadStory(key)
+        
         // console.log("key object: ",JSON.stringify(key, null, 3))
         console.log(`Story saved with key ${key}`)
     } catch (error) {
