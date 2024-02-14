@@ -28,10 +28,9 @@ const ShareButton:React.FC<UserStory> =  (story:UserStory) =>{
             alert('You must be logged in to use the Share Feature .');
             return;
         }
-        console.log('!!!! In sharebutton handleSave !!!!')
         try {
-            const snapshotData =  await ReadStory(story);
-            console.log('snapshotData: ',JSON.stringify(snapshotData))
+            const snapshotData =  await ReadStory();
+            console.log('snapshotData:',JSON.stringify(snapshotData))
             console.log('shareButton story input (not from DB): ',story)
             
         } catch (error) {

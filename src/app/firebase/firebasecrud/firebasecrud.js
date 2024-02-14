@@ -11,6 +11,7 @@ import {
 import { db } from "../firebaseconfig/firebaseconfig";
 import { getAuth, User } from "firebase/auth";
 
+
 export const SaveInfo = async ({ story }) => {
   try {
     const auth = getAuth();
@@ -31,7 +32,8 @@ export const SaveInfo = async ({ story }) => {
  * Fetches a story from Firebase Realtime Database.
  * @return {Promise<{url: string, title: string, urlToImage: string, description: string }>} The story object.
  */
-export const ReadStory = async (key) => {
+export const ReadStory = async () => {
+  
   try {
     const auth = getAuth();
     const user = auth.currentUser;
@@ -41,23 +43,26 @@ export const ReadStory = async (key) => {
     const userID = user.uid;
 
 
+    const storyRef = `SavedStories/${userID}/UserStories`
+    const parentRef = ref(db,storyRef)
+    const snapshot = await get(parentRef)
+//reads all of the stories instead of most recent one uploaded 
+    if(snapshot.exists()){
+      const stories = []
+     snapshot.forEach(childSnapshot=>{
+      const storyID = childSnapshot.key
+      const storyData = childSnapshot.val()
 
+      stories.push({id:storyID,...storyData})
+      console.log(`${storyID}`,stories[0])
+     })
+     
+    }
     
-    const storyRef = `SavedStories/${userID}/UserStories/${key}`
 
-    console.log('StoryEndpointReference',JSON.stringify(storyRef,null,3))
-     get(child(db, 'UserStories'))
-      .then((snapshot) => {
-        if (snapshot.exists()) {
-          console.log(snapshot.val());
-        } else {
-          console.log("No data available");
-        }
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  } catch (error) {
-    console.error(error);
+    // console.log('StoryEndpointReference',JSON.stringify(storyRef,null,3))
+
+  }catch(error){
+console.log('error',error)
   }
 };
