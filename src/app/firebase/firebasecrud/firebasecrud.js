@@ -49,6 +49,7 @@ export const ReadStory = async () => {
 //reads all of the stories instead of most recent one uploaded 
     if(snapshot.exists()){
       const stories = []
+      
      snapshot.forEach(childSnapshot=>{
       const storyID = childSnapshot.key
       const storyData = childSnapshot.val()
