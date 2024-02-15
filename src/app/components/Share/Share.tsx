@@ -29,9 +29,9 @@ const ShareButton:React.FC<UserStory> =  (story:UserStory) =>{
             return;
         }
         try {
-            const snapshotData =  await ReadStory();
-            console.log('snapshotData:',JSON.stringify(snapshotData))
-            console.log('shareButton story input (not from DB): ',story)
+           await ReadStory();
+            // console.log('snapshotData:',JSON.stringify(snapshotData))
+    
             
         } catch (error) {
             console.log('error',error)

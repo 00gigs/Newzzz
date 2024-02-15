@@ -7,6 +7,9 @@ import {
   child,
   push,
   onValue,
+  orderByKey,
+  query,
+  limitToLast
 } from "firebase/database";
 import { db } from "../firebaseconfig/firebaseconfig";
 import { getAuth, User } from "firebase/auth";
@@ -45,8 +48,10 @@ export const ReadStory = async () => {
 
     const storyRef = `SavedStories/${userID}/UserStories`
     const parentRef = ref(db,storyRef)
-    const snapshot = await get(parentRef)
-//reads all of the stories instead of most recent one uploaded 
+    const firstStoryQuery = query(parentRef, limitToLast(1));
+//limitToLast pulls from the bottom of the database which is always updated/new child key
+    const snapshot = await get(firstStoryQuery)
+
     if(snapshot.exists()){
       const stories = []
       
@@ -55,9 +60,13 @@ export const ReadStory = async () => {
       const storyData = childSnapshot.val()
 
       stories.push({id:storyID,...storyData})
-      console.log(`${storyID}`,stories[0])
+      console.log(`Story Shared ->${storyID}`,stories)
+      return stories
      })
      
+    }else{
+      console.log("No data available at this path."); // Log if no data
+      return []
     }
     
 

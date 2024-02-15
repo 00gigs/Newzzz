@@ -1,4 +1,4 @@
-import { Card, Paper } from '@mui/material';
+import { Card } from '@mui/material';
 import Link from '@mui/material/Link';
 import React from "react"
 import { useState, useEffect } from "react"
@@ -18,7 +18,7 @@ const New = () => {
     fetch('https://newsapi.org/v2/top-headlines?country=us&sortBy=publishedAt&apiKey=a85bc3b68a3f4351982c8f77634ce462')
       .then(res => res.json())
       .then(data => {
-        console.log(JSON.stringify(data, null, 3))
+        // console.log(JSON.stringify(data, null, 3))
         setData(data)})
   }, [])
 
