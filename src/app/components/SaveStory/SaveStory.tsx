@@ -36,6 +36,7 @@ const handleSave = async () =>{
     try {
         console.log('story object: ',JSON.stringify(story,null, 3));
         const key = await SaveInfo({story})
+        
         // await ReadStory(key)
         // console.log("key object: ",JSON.stringify(key, null, 3))
         console.log(`Story saved with key ${key}`)

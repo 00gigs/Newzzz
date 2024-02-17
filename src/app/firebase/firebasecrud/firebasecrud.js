@@ -61,6 +61,7 @@ export const ReadStory = async () => {
 
       stories.push({id:storyID,...storyData})
       console.log(`Story Shared ->${storyID}`,stories)
+      localStorage.setItem('storyArray',JSON.stringify(storyData))
       return stories
      })
      
@@ -69,10 +70,11 @@ export const ReadStory = async () => {
       return []
     }
     
-
+    
     // console.log('StoryEndpointReference',JSON.stringify(storyRef,null,3))
-
+    
   }catch(error){
-console.log('error',error)
+    console.log('error',error)
+    return []
   }
 };

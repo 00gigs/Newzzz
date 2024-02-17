@@ -6,7 +6,7 @@ import React from 'react'
   return (
     <div>
       <Nav/>
-      <FirebaseauthPage/>
+      <FirebaseauthPage/> 
     </div>
   )
 }

@@ -26,7 +26,7 @@ const Home = () => {
         <div className="grid2"><Missed /></div>
         <div className="grid4"><Recommended /></div>
         <div className="grid5"><Trending /></div>
-        <MyComponent/>
+        {/* <MyComponent/> */}
       </div>
  ©  2024 James Harrington Co.All rights reserved.
     </div>

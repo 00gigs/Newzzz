@@ -1,31 +1,43 @@
-import { useState,useEffect} from "react"
-import React from "react"
-import { ReadStory } from "@/app/firebase/firebasecrud/firebasecrud"
-import Typography from '@mui/material/Typography'
-import CardContent from '@mui/material/CardContent';
-import { Card } from '@mui/material';
-import Link from '@mui/material/Link';
-import SaveStory from "../SaveStory/SaveStory";
+import React, { useState, useEffect } from "react";
 
-const Community = () => {
-const [stories, setStories] = useState([])
+// Step 1: Define an interface to describe the shape of your story object
+interface Story {
+  url: string;
+  title: string;
+  urlToImage: string;
+  description: string;
+}
 
+const Community: React.FC = () => {
+  // Step 2: Adjust the initial state to match the Story interface
+  const [story, setStory] = useState<Story>({ url: "", title: "", urlToImage: "", description: "" });
 
-useEffect(() => {
-  const fetechedStories = async()=>{
-    const fetched = await ReadStory()
-    console.log("Fetched stories in component:", fetched);
-    setStories(fetched)
-  }
-  fetechedStories()
-}, [])
-
+  useEffect(() => {
+    // Retrieve the story object from localStorage
+    const storedStory = localStorage.getItem("story");
+    if (storedStory) {
+      // Parse the string back into an object and assert the parsed object as type Story
+      setStory(JSON.parse(storedStory) as Story);
+      console.log(story)
+    }else{
+      console.log('none')
+    }
+  }, []);
 
   return (
     <div>
-   
+      {story ? (
+        <div>
+          <h2>{story.title}</h2>
+          <img src={story.urlToImage} alt={story.title} style={{ width: '100px', height: '100px' }} />
+          <p>{story.description}</p>
+          <a href={story.url} target="_blank" rel="noopener noreferrer">Read More</a>
+        </div>
+      ) : (
+        <p>No story found</p>
+      )}
     </div>
-  )
-}
+  );
+};
 
-export default Community
+export default Community;

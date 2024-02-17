@@ -80,7 +80,7 @@ const handleSignout = ()=>{
 
 
   return (
-    <Box sx={{ flexGrow: 1, mb:10 }}>
+    <Box sx={{ flexGrow: 1, mb:15 }}>
       <AppBar position="absolute" sx={{bgcolor:'brown'}}>
         <Toolbar>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
@@ -102,7 +102,7 @@ const handleSignout = ()=>{
           <Button  color="inherit"><img width="24" height="24" src="https://img.icons8.com/material-rounded/24/user.png" alt="user"/></Button>
           </Link>
           
-          <Search>
+          {/* <Search>
             <SearchIconWrapper>
               
             </SearchIconWrapper>
@@ -110,7 +110,7 @@ const handleSignout = ()=>{
               placeholder="Search…"
               inputProps={{ 'aria-label': 'search' }}
             />
-          </Search>
+          </Search> */}
         </Toolbar>
       </AppBar>
     </Box>
